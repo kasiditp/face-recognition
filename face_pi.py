@@ -7,9 +7,9 @@ import face_recognition
  
 # initialize the camera and grab a reference to the raw camera capture
 camera = PiCamera()
-camera.resolution = (640, 480)
-camera.framerate = 32
-rawCapture = PiRGBArray(camera, size=(640, 480))
+# camera.resolution = (640, 480)
+# camera.framerate = 32
+# rawCapture = PiRGBArray(camera, size=(640, 480))
  
 obama_image = face_recognition.load_image_file("yamakawa.jpg")
 obama_face_encoding = face_recognition.face_encodings(obama_image, num_jitters=5)[0]
@@ -30,9 +30,7 @@ process_this_frame = True
  
 # capture frames from the camera
 for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-    # grab the raw NumPy array representing the image, then initialize the timestamp
-	# and occupied/unoccupied text
-	image = frame.array
+    image = frame.array
     small_frame = cv2.resize(image, (0, 0), fx=0.25, fy=0.25)
     if process_this_frame:
         # Find all the faces and face encodings in the current frame of video
