@@ -15,7 +15,7 @@ rawCapture = PiRGBArray(camera, size=(640, 480))
 # obama_face_encoding = face_recognition.face_encodings(obama_image, num_jitters=5)[0]
 
 jub_image = face_recognition.load_image_file("Kasidit2.jpg", mode='RGB')
-jub_face_encoding = face_recognition.face_encodings(jub_image, num_jitters=5)[0]
+jub_face_encoding = face_recognition.face_encodings(jub_image)[0]
 
 # gua_image = face_recognition.load_image_file("Pakpon2.png", mode='RGB')
 # gua_face_encoding = face_recognition.face_encodings(gua_image, num_jitters=1)[0]
