@@ -14,8 +14,8 @@ rawCapture = PiRGBArray(camera, size=(640, 480))
 # obama_image = face_recognition.load_image_file("yamakawa.jpg")
 # obama_face_encoding = face_recognition.face_encodings(obama_image, num_jitters=5)[0]
 
-# jub_image = face_recognition.load_image_file("Kasidit2.jpg", mode='RGB')
-# jub_face_encoding = face_recognition.face_encodings(jub_image, num_jitters=5)[0]
+jub_image = face_recognition.load_image_file("Kasidit2.jpg", mode='RGB')
+jub_face_encoding = face_recognition.face_encodings(jub_image, num_jitters=5)[0]
 
 # gua_image = face_recognition.load_image_file("Pakpon2.png", mode='RGB')
 # gua_face_encoding = face_recognition.face_encodings(gua_image, num_jitters=1)[0]
@@ -39,21 +39,21 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
         face_encodings = face_recognition.face_encodings(
             small_frame, face_locations, num_jitters=1)
 
-    #     face_names = []
-    #     for face_encoding in face_encodings:
-    #         # See if the face is a match for the known face(s)
-    #         match = face_recognition.compare_faces([obama_face_encoding, gua_face_encoding, jub_face_encoding ],
-    #                                                face_encoding,tolerance=0.6)
-    #         name = "Unknown"
-    #         print match
-    #         if match[0] == True:
-    #             name = "Yamakawa"
-    #         elif match[1]:
-    #             name = "Gua"
-    #         elif match[2]:
-    #             name = "Kasidit"
+        face_names = []
+        for face_encoding in face_encodings:
+            # See if the face is a match for the known face(s)
+            match = face_recognition.compare_faces([jub_face_encoding],
+                                                   face_encoding,tolerance=0.6)
+            name = "Unknown"
+            print match
+            if match[0] == True:
+                name = "Yamakawa"
+            elif match[1]:
+                name = "Gua"
+            elif match[2]:
+                name = "Kasidit"
 
-    #         face_names.append(name)
+            face_names.append(name)
 
     process_this_frame = not process_this_frame
 
