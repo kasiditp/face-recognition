@@ -18,6 +18,7 @@ jub_image = face_recognition.load_image_file("Kasidit2.jpg", mode='RGB')
 jub_face_encoding = face_recognition.face_encodings(jub_image, num_jitters=5)[0]
 
 gua_image = face_recognition.load_image_file("Pakpon2.png", mode='RGB')
+gua_face_encoding = face_recognition.face_encodings(gua_image, num_jitters=1)[0]
 
 # allow the camera to warmup
 time.sleep(0.1)
@@ -71,8 +72,7 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
     #     cv2.rectangle(image, (left, bottom - 35), (right, bottom), (0, 0, 255),
     #                   1)
     #     font = cv2.FONT_HERSHEY_DUPLEX
-    #     cv2.putText(image, name, (left + 6, bottom - 6), font, 1.0, (255, 255,
-                                                                     255), 1)
+    #     cv2.putText(image, name, (left + 6, bottom - 6), font, 1.0, (255, 255, 255), 1)
 
     # Display the resulting image
     # cv2.imshow('Video', frame)
