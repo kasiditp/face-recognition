@@ -33,9 +33,10 @@ process_this_frame = True
 for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
     image = frame.array
     small_frame = cv2.resize(image, (0, 0), fx=0.25, fy=0.25)
+    gray_small_frame = cv2.cvtColor(small_frame, cv2.COLOR_BGR2GRAY)
     if process_this_frame:
         # Find all the faces and face encodings in the current frame of video
-        face_locations = face_recognition.face_locations(small_frame)
+        face_locations = face_recognition.face_locations(gray_small_frame)
         face_encodings = face_recognition.face_encodings(
             small_frame, face_locations, num_jitters=1)
 
