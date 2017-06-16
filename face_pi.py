@@ -48,10 +48,6 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
             name = "Unknown"
             print match
             if match[0] == True:
-                name = "Yamakawa"
-            elif match[1]:
-                name = "Gua"
-            elif match[2]:
                 name = "Kasidit"
 
             face_names.append(name)
