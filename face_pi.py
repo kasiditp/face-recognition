@@ -21,6 +21,12 @@ gua_image = face_recognition.load_image_file("Pakpon2.png", mode='RGB')
 
 # allow the camera to warmup
 time.sleep(0.1)
+
+# Initialize some variables
+face_locations = []
+face_encodings = []
+face_names = []
+process_this_frame = True
  
 # capture frames from the camera
 for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
