@@ -30,7 +30,10 @@ process_this_frame = True
  
 # capture frames from the camera
 for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=True):
-    small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
+    # grab the raw NumPy array representing the image, then initialize the timestamp
+	# and occupied/unoccupied text
+	image = frame.array
+    small_frame = cv2.resize(image, (0, 0), fx=0.25, fy=0.25)
     if process_this_frame:
         # Find all the faces and face encodings in the current frame of video
         face_locations = face_recognition.face_locations(small_frame)
@@ -64,20 +67,18 @@ for frame in camera.capture_continuous(rawCapture, format="bgr", use_video_port=
         left *= 4
 
         # Draw a box around the face
-        cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
+        cv2.rectangle(image, (left, top), (right, bottom), (0, 0, 255), 2)
 
         # Draw a label with a name below the face
-        cv2.rectangle(frame, (left, bottom - 35), (right, bottom), (0, 0, 255),
+        cv2.rectangle(image, (left, bottom - 35), (right, bottom), (0, 0, 255),
                       1)
         font = cv2.FONT_HERSHEY_DUPLEX
-        cv2.putText(frame, name, (left + 6, bottom - 6), font, 1.0, (255, 255,
+        cv2.putText(image, name, (left + 6, bottom - 6), font, 1.0, (255, 255,
                                                                      255), 1)
 
     # Display the resulting image
     # cv2.imshow('Video', frame)
-	# grab the raw NumPy array representing the image, then initialize the timestamp
-	# and occupied/unoccupied text
-	image = frame.array
+	
  
 	# show the frame
 	cv2.imshow("Frame", image)
